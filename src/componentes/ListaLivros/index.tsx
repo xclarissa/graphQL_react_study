@@ -1,40 +1,22 @@
 import { ICategoria } from "../../interfaces/ICategoria";
 import { AbBotao, AbCampoTexto } from "ds-alurabooks";
-import CardLivro from "../CardLivro";
-import { gql, useQuery } from "@apollo/client";
+import CardLivro from "../CardLivro"; 
 
 import "./ListaLivros.css";
 import { ILivro } from "../../interfaces/ILivro";
 import { useState } from "react";
+import { useLivros } from "../../hooks/queries/useLivros";
 
 interface ListaLivrosProps {
   categoria: ICategoria;
 }
 
 // O APOLLO CLIENT SEMPRE MANDA REQUISIÇOES USANDO O VERBO POST
-const OBTER_QUERY = gql`
-  query ObterLivros($categoriaId: Int, $titulo: String) {
-    livros(categoriaId: $categoriaId, titulo: $titulo) {
-      id
-      slug
-      titulo
-      imagemCapa
-      opcoesCompra {
-        id
-        preco
-      }
-    }
-  }
-`;
 
 const ListaLivros = ({ categoria }: ListaLivrosProps) => {
   const [textoBusca, setTextoDaBusca] = useState("");
 
-  const { data, refetch } = useQuery<{ livros: ILivro[] }>(OBTER_QUERY, {
-    variables: {
-      categoriaId: categoria.id
-    },
-  });
+  const { data, refetch } = useLivros(categoria);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
