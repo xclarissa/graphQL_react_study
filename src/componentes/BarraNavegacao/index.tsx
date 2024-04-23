@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ICategoria } from "../../interfaces/ICategoria";
+import logo from "./assets/logo.png";
+import usuario from "./assets/usuario.svg";
+import { useCategorias } from "../../hooks/queries/useCategorias";
 import BotaoNavegacao from "../BotaoNavegacao";
 import ModalCadastroUsuario from "../ModalCadastroUsuario";
 import ModalLoginUsuario from "../ModalLoginUsuario";
-import logo from "./assets/logo.png";
-import usuario from "./assets/usuario.svg";
-import { gql, useQuery } from "@apollo/client";
 import "./BarraNavegacao.css";
 
 const BarraNavegacao = () => {
@@ -20,20 +19,7 @@ const BarraNavegacao = () => {
   const [modalCadastroAberta, setModalCadastroAberta] = useState(false);
   const [modalLoginAberta, setModalLoginAberta] = useState(false);
 
-
-  const QUERY_CATEGORIAS = gql`
-    query ObterCategorias {
-      categorias {
-        id
-        nome
-        slug
-      }
-    }
-  `;
-
-  const { data } = useQuery<{ categorias: ICategoria[] }>(
-    QUERY_CATEGORIAS
-  );
+  const { data } = useCategorias();
 
 
   const aoEfetuarLogin = () => {

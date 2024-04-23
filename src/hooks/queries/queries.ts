@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-const OBTER_QUERY = gql`
+const QUERY_GET_LIVROS = gql`
   query ObterLivros($categoriaId: Int, $titulo: String) {
     livros(categoriaId: $categoriaId, titulo: $titulo) {
       id
@@ -15,4 +15,14 @@ const OBTER_QUERY = gql`
   }
 `;
 
-export default OBTER_QUERY;
+const QUERY_GET_CATEGORIAS = gql`
+  query ObterCategorias {
+    categorias {
+      id
+      nome
+      slug
+    }
+  }
+`;
+
+export { QUERY_GET_LIVROS, QUERY_GET_CATEGORIAS };

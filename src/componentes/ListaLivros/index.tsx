@@ -1,11 +1,11 @@
-import { ICategoria } from "../../interfaces/ICategoria";
+import { useState } from "react";
 import { AbBotao, AbCampoTexto } from "ds-alurabooks";
 import CardLivro from "../CardLivro"; 
-
-import "./ListaLivros.css";
-import { ILivro } from "../../interfaces/ILivro";
-import { useState } from "react";
+import { ICategoria } from "../../interfaces/ICategoria";
 import { useLivros } from "../../hooks/queries/useLivros";
+import "./ListaLivros.css";
+import { useReactiveVar } from "@apollo/client";
+import { livrosVar } from "../../hooks/queries/state";
 
 interface ListaLivrosProps {
   categoria: ICategoria;
@@ -16,15 +16,17 @@ interface ListaLivrosProps {
 const ListaLivros = ({ categoria }: ListaLivrosProps) => {
   const [textoBusca, setTextoDaBusca] = useState("");
 
-  const { data, refetch } = useLivros(categoria);
+  useLivros(categoria);
+  
+  const livros = useReactiveVar(livrosVar);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (textoBusca) {
-      refetch({
-        categoriaId: categoria.id,
-        titulo: textoBusca,
-      });
+      // refetch({
+      //   categoriaId: categoria.id,
+      //   titulo: textoBusca,
+      // });
     }
   };
 
@@ -44,7 +46,7 @@ const ListaLivros = ({ categoria }: ListaLivrosProps) => {
         </div>
       </form>
       <div className="livros">
-        {data?.livros.map((livro) => (
+        {livros.map((livro) => (
           <CardLivro livro={livro} key={livro.id} />
         ))}
       </div>
