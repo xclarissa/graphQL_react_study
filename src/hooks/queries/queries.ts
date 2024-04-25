@@ -25,4 +25,31 @@ const QUERY_GET_CATEGORIAS = gql`
   }
 `;
 
-export { QUERY_GET_LIVROS, QUERY_GET_CATEGORIAS };
+const QUERY_OBTER_DESTAQUES = gql`
+  query ObterDestaques {
+    destaques {
+      lancamentos {
+        id
+        slug
+        titulo
+        imagemCapa
+        opcoesCompra {
+          id
+          preco
+        }
+      }
+      maisVendidos {
+        id
+        slug
+        titulo
+        imagemCapa
+        opcoesCompra {
+          id
+          preco
+        }
+      }
+    }
+  }
+`;
+
+export { QUERY_GET_LIVROS, QUERY_GET_CATEGORIAS, QUERY_OBTER_DESTAQUES };

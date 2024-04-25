@@ -3,9 +3,9 @@ import { AbBotao, AbCampoTexto } from "ds-alurabooks";
 import CardLivro from "../CardLivro"; 
 import { ICategoria } from "../../interfaces/ICategoria";
 import { useLivros } from "../../hooks/queries/useLivros";
-import "./ListaLivros.css";
 import { useReactiveVar } from "@apollo/client";
 import { livrosVar } from "../../hooks/queries/state";
+import "./ListaLivros.css";
 
 interface ListaLivrosProps {
   categoria: ICategoria;
