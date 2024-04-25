@@ -1,10 +1,11 @@
-import { useState } from "react";
-import { AbBotao, AbCampoTexto } from "ds-alurabooks";
-import CardLivro from "../CardLivro"; 
+import { useEffect, useState } from "react";
+import { AbCampoTexto } from "ds-alurabooks";
+import CardLivro from "../CardLivro";
 import { ICategoria } from "../../interfaces/ICategoria";
 import { useLivros } from "../../hooks/queries/useLivros";
 import { useReactiveVar } from "@apollo/client";
-import { livrosVar } from "../../hooks/queries/state";
+import { filtroLivrosVar, livrosVar } from "../../hooks/queries/state";
+
 import "./ListaLivros.css";
 
 interface ListaLivrosProps {
@@ -16,34 +17,30 @@ interface ListaLivrosProps {
 const ListaLivros = ({ categoria }: ListaLivrosProps) => {
   const [textoBusca, setTextoDaBusca] = useState("");
 
-  useLivros(categoria);
-  
+  useEffect(() => {
+    filtroLivrosVar({
+      ...filtroLivrosVar(),
+      titulo: textoBusca.length >= 3 ? textoBusca : "",
+    });
+  }, [textoBusca]);
+
+  filtroLivrosVar({
+    ...filtroLivrosVar(),
+    categoria,
+  });
+
   const livros = useReactiveVar(livrosVar);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (textoBusca) {
-      // refetch({
-      //   categoriaId: categoria.id,
-      //   titulo: textoBusca,
-      // });
-    }
-  };
+  useLivros();
 
   return (
     <section>
-      <form
-        style={{ maxWidth: "80%", margin: "0 auto", textAlign: "center" }}
-        onSubmit={handleSubmit}
-      >
+      <form style={{ maxWidth: "80%", margin: "0 auto", textAlign: "center" }}>
         <AbCampoTexto
           value={textoBusca}
           onChange={setTextoDaBusca}
           placeholder="Digite o título"
         />
-        <div style={{ marginTop: "16px" }}>
-          <AbBotao texto="Buscar" />
-        </div>
       </form>
       <div className="livros">
         {livros.map((livro) => (
