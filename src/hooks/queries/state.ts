@@ -10,3 +10,5 @@ interface FiltroLivros {
 export const filtroLivrosVar = makeVar<FiltroLivros>({});
 
 export const livrosVar = makeVar<ILivro[]>([]);
+
+export const livroVar = makeVar<ILivro>({} as ILivro);

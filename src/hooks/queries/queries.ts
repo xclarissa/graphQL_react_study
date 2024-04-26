@@ -15,6 +15,33 @@ const QUERY_GET_LIVROS = gql`
   }
 `;
 
+const QUERY_GET_LIVRO = gql`
+  query ObterLivro($slug: String!) {
+    livro(slug: $slug) {
+      id
+      imagemCapa
+      descricao
+      titulo
+      slug
+      sobre
+      autorId
+      autor {
+        nome
+        sobre
+      }
+      opcoesCompra {
+        id
+        titulo
+        formatos
+        preco
+      }
+      tags {
+        nome
+      }
+    }
+  }
+`;
+
 const QUERY_GET_CATEGORIAS = gql`
   query ObterCategorias {
     categorias {
@@ -52,4 +79,9 @@ const QUERY_OBTER_DESTAQUES = gql`
   }
 `;
 
-export { QUERY_GET_LIVROS, QUERY_GET_CATEGORIAS, QUERY_OBTER_DESTAQUES };
+export {
+  QUERY_GET_LIVROS,
+  QUERY_GET_LIVRO,
+  QUERY_GET_CATEGORIAS,
+  QUERY_OBTER_DESTAQUES,
+};
