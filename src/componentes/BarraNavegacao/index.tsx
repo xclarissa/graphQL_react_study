@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "./assets/logo.png";
 import usuario from "./assets/usuario.svg";
-import { useCategorias } from "../../hooks/queries/useCategorias";
+import { useCategorias } from "../../graphql/livros/hooks";
 import BotaoNavegacao from "../BotaoNavegacao";
 import ModalCadastroUsuario from "../ModalCadastroUsuario";
 import ModalLoginUsuario from "../ModalLoginUsuario";

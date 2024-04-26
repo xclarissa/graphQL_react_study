@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { AbCampoTexto } from "ds-alurabooks";
 import CardLivro from "../CardLivro";
 import { ICategoria } from "../../interfaces/ICategoria";
-import { useLivros } from "../../hooks/queries/useLivros";
+import { useLivros } from "../../graphql/livros/hooks";
 import { useReactiveVar } from "@apollo/client";
-import { filtroLivrosVar, livrosVar } from "../../hooks/queries/state";
+import { filtroLivrosVar, livrosVar } from "../../graphql/livros/state";
 
 import "./ListaLivros.css";
 

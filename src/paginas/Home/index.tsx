@@ -7,7 +7,7 @@ import TagsCategorias from "../../componentes/TagsCategorias";
 import Titulo from "../../componentes/Titulo";
 import { useQuery } from "@apollo/client";
 import { ILivro } from "../../interfaces/ILivro";
-import { QUERY_OBTER_DESTAQUES } from "../../hooks/queries/queries";
+import { QUERY_OBTER_DESTAQUES } from "../../graphql/livros/queries";
 import "./Home.css";
 
 const Home = () => {

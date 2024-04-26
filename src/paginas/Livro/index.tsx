@@ -11,7 +11,7 @@ import BlocoSobre from "../../componentes/BlocoSobre";
 import Loader from "../../componentes/Loader";
 import TituloPrincipal from "../../componentes/TituloPrincipal";
 import { formatador } from "../../utils/formatador-moeda";
-import { useLivro } from "../../hooks/queries/useLivro";
+import { useLivro } from "../../graphql/livros/hooks";
 
 import "./Livro.css";
 
@@ -19,7 +19,6 @@ const Livro = () => {
   const params = useParams();
 
   const [opcao, setOpcao] = useState<AbGrupoOpcao>();
-  const [quantidade, setQuantidade] = useState(0);
 
   const { data, error, loading } = useLivro(params.slug || "");
 

@@ -79,9 +79,32 @@ const QUERY_OBTER_DESTAQUES = gql`
   }
 `;
 
+const QUERY_OBTER_CARRINHO = gql`
+  query ObterCarrinho {
+    carrinho {
+      total
+      itens {
+        quantidade
+        opcaoCompra {
+          preco
+        }
+        livro {
+          titulo
+          descricao
+          imagemCapa
+          autor {
+            nome
+          }
+        }
+      }
+    }
+  }
+`;
+
 export {
   QUERY_GET_LIVROS,
   QUERY_GET_LIVRO,
   QUERY_GET_CATEGORIAS,
   QUERY_OBTER_DESTAQUES,
+  QUERY_OBTER_CARRINHO
 };
