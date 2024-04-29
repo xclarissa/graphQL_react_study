@@ -1,18 +1,17 @@
 .itemContainer {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 24px;
-    margin-top: 24px;
+    grid-template-columns: repeat(4, 1fr);
+    margin-bottom: 24px;
   }
   
-  .imagem {
+  figure {
     grid-column: 1;
   }
   
   .info {
     grid-column: 2;
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; 
   }
 
   .quantidade {

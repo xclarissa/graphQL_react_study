@@ -11,9 +11,9 @@ interface ItemCarrinhoProps {
 const ItemCarrinho = ({ item }: ItemCarrinhoProps) => {
   return (
     <section className="itemContainer">
-      <div className="imagem">
-        <img src={item.livro.imagemCapa} alt={item.livro.titulo} height={200} />
-      </div>
+      <figure>
+        <img src={item.livro.imagemCapa} alt={item.livro.descricao} height={200} />
+      </figure>
 
       <div className="info">
         <h3>{item.livro.titulo}</h3>
@@ -25,9 +25,9 @@ const ItemCarrinho = ({ item }: ItemCarrinhoProps) => {
         <h3>Preço</h3>
         <p>{formatador.format(item.opcaoCompra.preco)}</p>
       </div>
-      
+
       <div className="quantidade">
-        <AbInputQuantidade onChange={() => null} value={0} />
+        <AbInputQuantidade onChange={() => null} value={item.quantidade} />
       </div>
 
       <div className="icon">
