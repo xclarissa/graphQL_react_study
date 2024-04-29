@@ -1,0 +1,9 @@
+.containerItemCarrinho {
+  display: flex;
+  flex-direction: column;
+}
+
+.itens {
+  max-width: 80%;
+  margin: 24px auto;
+}
