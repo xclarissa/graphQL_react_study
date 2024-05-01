@@ -7,7 +7,7 @@ import { useCarrinhoContext } from "../../contexts/CarrinhoContext";
 import "./Carrinho.css";
 
 const Carrinho = () => {
-  const { carrinho, adicionarItemCarrinho } = useCarrinhoContext()
+  const { carrinho } = useCarrinhoContext()
 
   return (
     <section className="containerItemCarrinho">
@@ -15,10 +15,9 @@ const Carrinho = () => {
 
       <div className="conteudo">
         <h3>Itens selecionados</h3>
-
         <div className="itens">
           {carrinho?.itens.map((itemCarrinho, index) => (
-            <ItemCarrinho key={index} item={itemCarrinho} adicionar={adicionarItemCarrinho!}/>
+            <ItemCarrinho key={index} item={itemCarrinho} />
           ))}
         </div>
 

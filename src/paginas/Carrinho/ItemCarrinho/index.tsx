@@ -6,10 +6,9 @@ import "./ItemCarrinho.css";
 
 interface ItemCarrinhoProps {
   item: IItemCarrinho;
-  adicionar: (item: IItemCarrinho) => void;
 }
 
-const ItemCarrinho = ({ item, adicionar }: ItemCarrinhoProps) => {
+const ItemCarrinho = ({ item }: ItemCarrinhoProps) => {
   return (
     <section className="itemContainer">
       <figure>
@@ -28,7 +27,7 @@ const ItemCarrinho = ({ item, adicionar }: ItemCarrinhoProps) => {
       </div>
 
       <div className="quantidade">
-        <AbInputQuantidade onChange={() => adicionar(item)} value={item.quantidade} />
+        <AbInputQuantidade onChange={() => null} value={item.quantidade} />
       </div>
 
       <div className="icon">

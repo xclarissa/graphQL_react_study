@@ -22,4 +22,10 @@ const QUERY_OBTER_CARRINHO = gql`
   }
 `;
 
-export { QUERY_OBTER_CARRINHO };
+const MUTATION_ADICIONAR_ITEM = gql`
+  mutation AdicionarItem($item: ItemCarrinhoInput!) {
+    adicionarItem(item: $item)
+  }
+`;
+
+export { QUERY_OBTER_CARRINHO, MUTATION_ADICIONAR_ITEM };

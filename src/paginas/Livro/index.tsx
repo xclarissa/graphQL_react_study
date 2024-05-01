@@ -12,6 +12,7 @@ import Loader from "../../componentes/Loader";
 import TituloPrincipal from "../../componentes/TituloPrincipal";
 import { formatador } from "../../utils/formatador-moeda";
 import { useLivro } from "../../graphql/livros/hooks";
+import { useCarrinhoContext } from "../../contexts/CarrinhoContext";
 
 import "./Livro.css";
 
@@ -19,8 +20,11 @@ const Livro = () => {
   const params = useParams();
 
   const [opcao, setOpcao] = useState<AbGrupoOpcao>();
+  const [quantidade, setQuantidade] = useState(0);
 
   const { data, error, loading } = useLivro(params.slug || "");
+
+  const { adicionarItemCarrinho } = useCarrinhoContext();
 
   if (error) {
     console.log("Alguma coisa deu errada");
@@ -40,6 +44,21 @@ const Livro = () => {
         rodape: opcao.formatos ? opcao.formatos.join(",") : "",
       }))
     : [];
+
+  const handleAdicionarAoCarrinho = () => {
+    if (!data?.livro) return;
+
+    const opcaoCompra = data.livro.opcoesCompra.find(
+      (op) => op.id === opcao?.id
+    );
+    if (!opcaoCompra) return;
+
+    adicionarItemCarrinho({
+      livro: data.livro,
+      quantidade,
+      opcaoCompra,
+    });
+  };
 
   return (
     <section className="livro-detalhe">
@@ -68,12 +87,12 @@ const Livro = () => {
             <footer>
               <div className="qtdContainer">
                 <AbInputQuantidade
-                  onChange={() => {}}
-                  value={0}
+                  onChange={setQuantidade}
+                  value={quantidade}
                 />
               </div>
               <div>
-                <AbBotao texto="Comprar" />
+                <AbBotao texto="Comprar" onClick={handleAdicionarAoCarrinho} />
               </div>
             </footer>
           </div>

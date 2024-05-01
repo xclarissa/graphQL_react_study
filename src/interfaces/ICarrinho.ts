@@ -8,8 +8,8 @@ interface ICarrinho {
 
 interface IItemCarrinho {
   quantidade: number;
-  livroId: number;
-  opcaoCompraId: number;
+  livroId?: number;
+  opcaoCompraId?: number;
   opcaoCompra: IOpcaoCompra;
   livro: ILivro;
 }
