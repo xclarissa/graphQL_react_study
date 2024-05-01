@@ -7,11 +7,9 @@ interface ICarrinho {
 }
 
 interface IItemCarrinho {
-  quantidade: number;
-  livroId?: number;
-  opcaoCompraId?: number;
-  opcaoCompra: IOpcaoCompra;
-  livro: ILivro;
+  livro: ILivro
+  opcaoCompra: IOpcaoCompra
+  quantidade: number
 }
 
 export type { ICarrinho, IItemCarrinho };

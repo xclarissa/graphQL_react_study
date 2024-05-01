@@ -7,9 +7,11 @@ const QUERY_OBTER_CARRINHO = gql`
       itens {
         quantidade
         opcaoCompra {
+          id
           preco
         }
         livro {
+          id
           titulo
           descricao
           imagemCapa
@@ -28,4 +30,10 @@ const MUTATION_ADICIONAR_ITEM = gql`
   }
 `;
 
-export { QUERY_OBTER_CARRINHO, MUTATION_ADICIONAR_ITEM };
+const MUTATION_REMOVER_ITEM = gql`
+  mutation RemoverItem($item: ItemCarrinhoInput!) {
+    removerItem(item: $item)
+  }
+`;
+
+export { QUERY_OBTER_CARRINHO, MUTATION_ADICIONAR_ITEM, MUTATION_REMOVER_ITEM };
