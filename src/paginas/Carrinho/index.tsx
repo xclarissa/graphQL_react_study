@@ -4,13 +4,15 @@ import { formatador } from "../../utils/formatador-moeda";
 import { AbBotao } from "ds-alurabooks";
 import { Link } from "react-router-dom";
 import { useCarrinhoContext } from "../../contexts/CarrinhoContext";
+import LoadingCarrinho from "../../componentes/LoaderCarrinho";
 import "./Carrinho.css";
 
 const Carrinho = () => {
-  const { carrinho } = useCarrinhoContext()
+  const { carrinho, carregando } = useCarrinhoContext();
 
   return (
     <section className="containerItemCarrinho">
+      {carregando && <LoadingCarrinho />}
       <TituloPrincipal texto="Minha sacola" />
 
       <div className="conteudo">

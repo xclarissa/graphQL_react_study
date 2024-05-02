@@ -12,7 +12,7 @@ interface ItemCarrinhoProps {
 const ItemCarrinho = ({ item }: ItemCarrinhoProps) => {
   const { adicionarItemCarrinho, removerItemCarrinho } = useCarrinhoContext();
 
-  const handleAdicionarAoCarrinho = (quantidade: number) => {
+  const handleAlterarQuantidade = (quantidade: number) => {
     if (!item?.livro) return;
 
     if(quantidade === 0) return handleRemoverItem();
@@ -61,7 +61,7 @@ const ItemCarrinho = ({ item }: ItemCarrinhoProps) => {
 
       <div className="quantidade">
         <AbInputQuantidade
-          onChange={handleAdicionarAoCarrinho}
+          onChange={handleAlterarQuantidade}
           value={item.quantidade}
         />
       </div>
